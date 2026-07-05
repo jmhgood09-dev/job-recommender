@@ -20,7 +20,8 @@ const FALLBACK = {
 
 export async function analyzeUserInput(answers) {
   try {
-    const res = await fetch('http://localhost:3001/analyze', {
+    const base = import.meta.env.DEV ? 'http://localhost:3001' : ''
+    const res = await fetch(`${base}/analyze`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ answers }),
